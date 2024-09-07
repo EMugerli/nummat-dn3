@@ -1,6 +1,2 @@
-using VzorecVaje
+using Domaca03
 using Test
-
-@testset "Linearna interpolacija" begin
-  @test VzorecVaje.lininter(0.5, 0, 1, 0, 1) ≈ 0.5
-end

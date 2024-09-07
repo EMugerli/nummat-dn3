@@ -1,49 +1,37 @@
-# Vzorec vaje
+# 3. Domača naloga Matematično nihalo
+Elian Mugerli, 7.9.2024
 
-V tem direktoriju je vzorec kode, kot jo bomo pisali na vajah. V julia REPL aktiviramo
-projekt v tem direktoriju. To omogoča, da v julia REPL kličemo funkcije, ki so definirane
-v direktoriju `src`. 
+Naloga zahteva izpeljavo matematičnega nihala, kjer je treba poiskati kotni odmik theta(t) nihala pri nihanju brez dušenja. Nihanje je predstavljeno z naslednjo diferencialno enačbo drugega reda (spodaj).
 
-```
-julia> # z vnosom znaka ] pridemo v "pkg" način
-(@v1.10) pkg> activate VzorecVaje
-```
+![alt text](assets/image.png)
+
+kjer je `g = 9.80665m/s^2` težni pospešek in `l` dolžina nihala.
+
+Enačbo nato prevedemo na sistem prvega reda in dobimo naslednje:
+
+$\theta^{\prime}(t) = v(t)$
+
+$v^{\prime}(t) = -\frac{g}{l} \sin(\theta(t))$
+
+Dobljeni sistem diferencialnih enačb rešujemo s pomočjo Runge-Kutta metode četrtega reda.
+
+![alt text](assets/image-1.png)
+
+
+V tem direktoriju se nahajajo datoteke potrebne za delovanje 2. domače naloge. Nalogo poženemo, tako da pokličemo `include("docs/demo.jl")`. V njem se nahaja rešitev za podani problem. Še pred tem je potrebno poklicati `activate Domaca03`. 
+
+## Rešitev
+
+Rešitev podanega problema je implementirano s pomočjo metod `runge_kutta4`, `nihalo`, `nihalo_extended`.
+
+Metoda `nihalo` se uporablja za izračun kotnih odmikov podanega matematičnega nihala s pomočjo metore Runge-Kutta 4.stopnje.
+
+Metoda `nihalo_extended` je le nadgradnja predhodne metode in poleg kotnih odmikov izračunava tudi hitrosti podanega nihala. Prav tako pa njen klic zahteva dodaten parameter `tip_nihala`, ki lahko glede na izbrano nihalo (matematično/harmonično) prilagaja funkcijo hitrosti.
+
+![alt text](assets/energija_nihala.png)
+
+![alt text](assets/odmiki_nihala.png)
 
 ## Testi
 
-Teste poženemo, tako da pokličemo tako, da v `pkg` načinu poženemo ukaz `test`
-
-```shell
-(VzorecVaje) pkg> test
-
-    Testing VzorecVaje
-    ...
-         Testing Running tests...
-Test Summary:          | Pass  Total  Time
-Linearna interpolacija |    1      1  0.0s
-     Testing VzorecVaje tests passed 
-```
-
-oziroma v terminalu poženemo
-
-```shell
-julia --project="VzorecVaje" -e "import Pkg; Pkg.test()"
-```
-
-## Dokumentacija
-
-Poročilo generiramo s paketom [Weave.jl](https://github.com/JunoLab/Weave.jl). Podrobnosti so v datoteki `makedocs.jl`.
-
-V terminalu lahko z ukazom generiramo PDF datoteko
-
-```shell
-$ julia --project="VzorecVaje" VzorecVaje/docs/makedocks.jl
-```
-
-Podobno lahko storimo v julia REPL-u
-
-```jl
-julia> include("VzorecVaje/docs/makedocs.jl")
-```
-
-Zgornja ukaza iz komentarjev in kode v `demo.jl` generirata PDF datoteko.
+Za podani problem testi žal niso bili implementirani.
