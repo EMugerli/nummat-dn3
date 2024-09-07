@@ -35,3 +35,9 @@ Metoda `nihalo_extended` je le nadgradnja predhodne metode in poleg kotnih odmik
 ## Testi
 
 Za podani problem testi žal niso bili implementirani.
+
+## Dokumentacija
+
+Poročilo generiramo s paketom [Weave.jl](https://github.com/JunoLab/Weave.jl). Podrobnosti so v datoteki `makedocs.jl`.
+
+Zgornja ukaza iz komentarjev in kode v `demo.jl` generirata PDF datoteko, ki se ob generiranju nahaja znotraj direktorija `build` v datoteki `demo.pdf`.
